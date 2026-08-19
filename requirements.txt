@@ -1,0 +1,83 @@
+# Dépendances du projet — fichier unique.
+#
+# Installation recommandée (Windows) : setup_venv.bat, qui crée un
+# environnement virtuel isolé et installe paquet par paquet pour résister aux
+# coupures réseau. Manuellement, depuis la racine du projet :
+#
+#     python -m pip install -r requirements.txt --timeout 120 --retries 10
+#
+# Versions bornées pour Python 3.11 : chaque paquet ci-dessous dispose d'une
+# roue (wheel) précompilée pour Windows 64 bits, donc aucune compilation locale.
+# Combinaison testée de bout en bout — chargement du modèle, scoring, SHAP,
+# suite de tests : pandas 3.0, numpy 2.4, scikit-learn 1.8, xgboost 3.2,
+# shap 0.51, matplotlib 3.10, seaborn 0.13, joblib 1.5, streamlit 1.61.
+
+# --- Socle scientifique ----------------------------------------------------
+pandas>=2.1,<4
+numpy>=1.26,<3
+scipy>=1.11,<2
+scikit-learn>=1.3,<2
+joblib>=1.3,<2
+
+# --- Modélisation ----------------------------------------------------------
+# xgboost n'apparaît dans aucun `import` du tableau de bord, mais reste
+# indispensable : le modèle sauvegardé est un XGBClassifier et joblib doit
+# pouvoir reconstruire cette classe au chargement. La borne >=3.0 correspond à
+# la version qui a entraîné models/xgboost_v2_best.pkl — rester dans la même
+# version majeure évite les avertissements de désérialisation.
+xgboost>=3.0,<4
+imbalanced-learn>=0.12,<1
+optuna>=3.4,<5
+shap>=0.44,<1
+
+# --- Détection d'anomalies non supervisée (notebook 03) --------------------
+# pyod fonctionne sans torch pour Isolation Forest et LOF ; seul son
+# AutoEncoder exige torch (voir la section « Optionnel » en bas de fichier).
+pyod>=1.1,<3
+
+# --- Visualisation ---------------------------------------------------------
+matplotlib>=3.7,<4
+seaborn>=0.13,<1
+
+# --- Tableau de bord -------------------------------------------------------
+# La borne >=1.50 est requise : l'application utilise le paramètre `width=`,
+# qui remplace `use_container_width`, déprécié depuis fin 2025.
+streamlit>=1.50,<2
+
+# --- Notebooks -------------------------------------------------------------
+jupyter>=1.0
+nbformat>=5.9
+# ipywidgets : barre de progression Optuna dans le notebook 05.
+ipywidgets>=8.0
+
+# --- Tests -----------------------------------------------------------------
+# Les tests marqués `slow` chargent le modèle entraîné et sont automatiquement
+# sautés si models/xgboost_v2_best.pkl est absent.
+pytest>=7.4
+
+# ===========================================================================
+# OPTIONNEL — torch, délibérément non installé par défaut
+# ===========================================================================
+# torch ne sert qu'à la section Autoencoder du notebook 03. Rien d'autre ne
+# l'utilise : ni le tableau de bord, ni les modèles supervisés (notebooks 04
+# et 05), ni Isolation Forest / LOF. Le notebook 03 détecte proprement son
+# absence et saute simplement cette section.
+#
+# Il pèse plusieurs centaines de mégaoctets et son téléchargement est la cause
+# la plus fréquente des `ReadTimeoutError` sur connexion lente — une erreur qui
+# faisait auparavant échouer l'installation de TOUS les autres paquets. D'où sa
+# mise à l'écart ici.
+#
+# Pour rappel, l'autoencodeur s'était révélé le plus faible des trois modèles
+# non supervisés (AUC-ROC ≈ 0,50, soit le niveau du hasard) : l'installer n'est
+# utile que pour reproduire ce résultat négatif.
+#
+# Installation à part, en préférant la version CPU (quelques centaines de Mo au
+# lieu de plusieurs Go pour la version CUDA) :
+#
+#     python -m pip install torch --index-url https://download.pytorch.org/whl/cpu --timeout 180 --retries 10
+#
+# En cas de ReadTimeoutError, relancez : pip reprend son cache et ne
+# retélécharge pas ce qui a déjà abouti.
+#
+# torch>=2.0

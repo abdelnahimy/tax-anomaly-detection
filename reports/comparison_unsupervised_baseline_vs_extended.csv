@@ -1,0 +1,7 @@
+,BASELINE_LOG (28 var.),EXTENDED_LOG (56 var.)
+auc_roc,0.6063,0.51
+auc_pr,0.0121,0.0083
+precision@1%,0.0102,0.0058
+recall@1%,0.0207,0.0137
+precision@5%,0.0082,0.005
+recall@5%,0.0695,0.0473

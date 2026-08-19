@@ -1,0 +1,13 @@
+﻿# Robustesse du modele aux 4 variables absentes de la liasse marocaine
+# Variables retirees : prcc_f, csho, dltis, sstk
+#
+# RESUME
+n_observations,n_fraudes,periode,score_moyen_complet,score_moyen_degrade,decalage_score_moyen,spearman,kendall,auc_pr_complet,auc_pr_degrade,auc_roc_complet,auc_roc_degrade
+16904,34,2012-2014,0.2644,0.4705,0.2061,0.8648,0.6787,0.0039,0.00578,0.7142,0.7119
+#
+# PAR BUDGET DE CONTROLE
+budget_pct,n_dossiers,recouvrement_pct,rappel_complet_pct,rappel_degrade_pct,ecart_rappel_pts
+1,170,51.2,0.0,2.9,2.9
+5,846,58.6,8.8,8.8,0.0
+10,1691,61.9,17.6,17.6,0.0
+20,3381,66.4,47.1,41.2,-5.9

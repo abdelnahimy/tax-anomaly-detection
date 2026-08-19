@@ -1,0 +1,21 @@
+# Registre administratif neutre — couleurs de base des widgets natifs de
+# Streamlit (boutons, curseurs, cases à cocher, liens, indicateur d'activité).
+# Tout le reste — en-tête, onglets, notes encadrées, tableaux, barre latérale —
+# est injecté par dashboard/theme.py::injecter_css(), qui fait foi.
+#
+# Une seule couleur d'accent, volontairement : #2C5F9E.
+
+[theme]
+base = "light"
+primaryColor = "#2C5F9E"
+backgroundColor = "#F8FAFC"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#0F172A"
+font = "sans serif"
+
+[client]
+toolbarMode = "viewer"
+showSidebarNavigation = true
+
+[browser]
+gatherUsageStats = false

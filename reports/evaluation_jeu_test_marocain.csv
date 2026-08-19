@@ -1,0 +1,60 @@
+﻿# Evaluation du ciblage sur le portefeuille simule de la DRI de Tetouan
+# DONNEES FICTIVES, anomalies plantees.
+# L'echec du modele JAR2020 est un constat solide (ecart de distribution).
+# Le succes de la regle de rupture est partiellement circulaire.
+#
+# n_lignes=880 n_anomalies=34 prevalence=0.0386
+# modele  : auc_pr=0.04748 auc_roc=0.4604
+# regle   : auc_pr=0.54881 auc_roc=0.9459
+#
+# SUR QUOI CHAQUE DISPOSITIF CLASSE-T-IL
+dispositif,corr_avec_anomalie,corr_avec_taille
+Modèle JAR2020,-0.026,0.592
+Règle de rupture,0.3,0.016
+#
+# RENDEMENT PAR BUDGET DE CONTROLE
+dispositif,budget_pct,dossiers_examines,anomalies_captees,part_captee_pct,multiple_du_hasard,precision_pct
+Modèle JAR2020,1,9,0,0.0,0.0,0.0
+Modèle JAR2020,5,44,4,11.8,2.35,9.1
+Modèle JAR2020,10,88,6,17.6,1.76,6.8
+Modèle JAR2020,20,176,8,23.5,1.18,4.5
+Modèle JAR2020,30,264,12,35.3,1.18,4.5
+Règle de rupture,1,9,9,26.5,26.47,100.0
+Règle de rupture,5,44,18,52.9,10.59,40.9
+Règle de rupture,10,88,26,76.5,7.65,29.5
+Règle de rupture,20,176,32,94.1,4.71,18.2
+Règle de rupture,30,264,33,97.1,3.24,12.5
+#
+# PERCENTILE MEDIAN PAR PROFIL D'ANOMALIE
+profil_anomalie,n_lignes,percentile_modele,percentile_regle
+minoration_ca,8,81.7,99.3
+accruals_eleves,2,14.1,99.2
+majoration_charges,9,50.1,95.5
+creances_fictives,4,50.1,94.8
+stocks_surevalues,3,16.7,94.0
+rupture_trajectoire,4,28.9,93.5
+is_anormalement_bas,4,36.2,92.7
+#
+# TAUX DE SIGNALEMENT PAR TAILLE (seuil top 20%)
+taille,n_lignes,signale_modele_pct,signale_regle_pct
+Moyenne entreprise,144,74.3,14.6
+Grande entreprise,60,46.7,25.0
+Petite entreprise,288,12.5,18.1
+TPE,388,1.3,22.7
+#
+# TAUX DE SIGNALEMENT PAR SECTEUR (seuil top 20%)
+secteur,n_lignes,signale_modele_pct,signale_regle_pct
+Batiment et travaux publics,44,40.9,22.7
+Promotion immobiliere,64,35.9,7.8
+Textile et habillement,52,30.8,26.9
+Negoce de materiaux,76,23.7,7.9
+Peche et transformation,64,23.4,28.1
+Sante et cliniques,80,21.2,27.5
+Transport et logistique,60,20.0,23.3
+Industrie plastique,64,18.8,31.2
+Commerce de detail,80,15.0,10.0
+Agriculture et agrumes,64,12.5,21.9
+Industrie agroalimentaire,68,11.8,38.2
+Services aux entreprises,52,11.5,1.9
+Hebergement et restauration,64,10.9,15.6
+Commerce de gros,48,8.3,16.7

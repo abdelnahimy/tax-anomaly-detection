@@ -1,0 +1,4 @@
+,auc_roc,auc_pr,precision@1%,recall@1%,precision@5%,recall@5%
+Hasard pur (référence),0.4971,0.0099,0.0058,0.0072,0.0061,0.0666
+Isolation Forest,0.51,0.0083,0.0058,0.0137,0.005,0.0473
+LOF,0.587,0.0083,0.0044,0.0118,0.0085,0.0856

@@ -1,0 +1,60 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Environnements virtuels ----------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# --- Outils ---------------------------------------------------------------
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Données volumineuses -------------------------------------------------
+# Le jeu JAR2020 (46 Mo) et sa version transformée (115 Mo) ne sont pas
+# versionnés : voir data/raw/README.md pour les instructions de téléchargement.
+data/raw/*.csv
+data/processed/*.csv
+
+# Les jeux d'exemple et de test marocains SONT versionnés : ils sont fictifs,
+# régénérables par script, et servent de gabarit de saisie.
+!dashboard/exemple_liasse_marocaine.csv
+!dashboard/exemple_donnees.csv
+!data/exemples_marocains/*.csv
+
+# --- Exports de liasses réelles -------------------------------------------
+# Garde-fou : tout export issu du système d'information de l'administration
+# relève du secret professionnel (art. 246 du CGI) et ne doit JAMAIS être
+# versionné, même par inadvertance.
+exports_dgi/
+liasses_reelles/
+*_confidentiel*
+*_reel.csv
+
+# --- Modèles --------------------------------------------------------------
+# Conservés dans le dépôt : le dashboard en dépend et ils pèsent ~1 Mo.
+# Décommenter si le dépôt doit rester strictement code seul.
+# models/*.pkl
+
+# --- Système --------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Éditeurs -------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
